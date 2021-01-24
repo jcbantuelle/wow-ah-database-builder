@@ -30,6 +30,10 @@ class WowheadItem
     [@id, max_stack, sell_price, sell_price * 1.2]
   end
 
+  def to_s
+    "Name: #{name}\nQuality: #{quality}\nMax Stack: #{max_stack}\nSell Price: #{sell_price}\nBind On Pickup: #{bind_on_pickup}\nConjured: #{conjured}\nQuest Item: #{quest_item}\nHorde Only: #{horde_only}\n"
+  end
+
   private
 
   def wowhead_page
