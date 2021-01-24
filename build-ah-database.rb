@@ -8,19 +8,11 @@ def invalid_name?(item_name)
 end
 
 def invalid_wowhead_item?(item)
-  invalid_quality?(item) || invalid_bind?(item) || conjured?(item)
+  invalid_quality?(item) || item.bind_on_pickup || item.quest_item || item.horde_only || item.conjured
 end
 
 def invalid_quality?(item)
   item.quality == 'q0'
-end
-
-def invalid_bind?(item)
-  item.bind_on_pickup
-end
-
-def conjured?(item)
-  item.conjured
 end
 
 items = CSV.read('wow-items-db.csv')
