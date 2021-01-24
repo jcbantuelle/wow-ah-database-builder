@@ -17,6 +17,6 @@ This will produce `ah-items.csv` for import into your AH database.
 
 # Customizing
 
-`wow-items-db.csv` contains a list of items in the format `[id, name]`. Adjust accordingly to suit your own needs or replace entirely with a new file that matches that format.
+`wow-items-db.csv` contains a list of items in the format `[id, name]`. Modify as desired or replace entirely with a new file that matches that format.
 
 `build-ah-database.rb` is the script that applies filter criteria to the full item list and generates `ah-items.csv`. Adjust accordingly to suit your own needs.
