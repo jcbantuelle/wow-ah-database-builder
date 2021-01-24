@@ -24,6 +24,7 @@ CSV.open('ah-items.csv', 'wb') do |csv|
   }.each { |item|
     wowhead_item = WowheadItem.new(item)
     csv << wowhead_item.to_a unless invalid_wowhead_item?(wowhead_item)
+    sleep(1)
     pp "Processed Item ##{item[0]}"
   }
 end
