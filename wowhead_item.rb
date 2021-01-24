@@ -9,6 +9,7 @@ class WowheadItem
     @name = item[1]
     @quality = tooltip_data.at_css('table td b').attribute('class')
     @bind_on_pickup = raw_tooltip.include?('Binds when picked up')
+    @quest_item = raw_tooltip.include?('Quest Item')
     @conjured = raw_tooltip.include?('Conjured Item')
   end
 
