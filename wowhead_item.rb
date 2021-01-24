@@ -7,7 +7,6 @@ class WowheadItem
   def initialize(item)
     @id = item[0]
     @name = item[1]
-    @page = fetch_wowhead_page
     @quality = tooltip_data.at_css('table td b').attribute('class')
     @bind_on_pickup = raw_tooltip.include?('Binds when picked up')
     @conjured = raw_tooltip.include?('Conjured Item')
@@ -31,12 +30,12 @@ class WowheadItem
 
   private
 
-  def fetch_wowhead_page
-    open("https://classic.wowhead.com/item=#{@id}").read
+  def wowhead_page
+    @wowhead_page ||= open("https://classic.wowhead.com/item=#{@id}").read
   end
 
   def raw_tooltip
-    @raw_tooltip ||= @page.lines.find { |line|
+    @raw_tooltip ||= wowhead_page.lines.find { |line|
       line.start_with?(tooltip_prefix)
     }.delete_prefix(tooltip_prefix).delete_suffix('";').gsub(/\\/, '')
   end
