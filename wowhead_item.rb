@@ -31,12 +31,14 @@ class WowheadItem
     open("https://classic.wowhead.com/item=#{@id}").read
   end
 
+  def raw_tooltip
+    @raw_tooltip ||= @page.lines.find { |line|
+      line.start_with?(tooltip_prefix)
+    }.delete_prefix(tooltip_prefix).delete_suffix('";').gsub(/\\/, '')
+  end
+
   def tooltip_data
-    @tooltip_data ||= Nokogiri::HTML.parse(
-      @page.lines.find { |line|
-        line.start_with?(tooltip_prefix)
-      }.delete_prefix(tooltip_prefix).delete_suffix('";').gsub(/\\/, '')
-    )
+    @tooltip_data ||= Nokogiri::HTML.parse(raw_tooltip)
   end
 
   def tooltip_prefix
