@@ -19,7 +19,9 @@ class WowheadItem
 
   def sell_price
     @sell_price ||= %w(gold silver copper).reduce('') { |total, coin_type|
-      total << (tooltip_data.at_css(".money#{coin_type}")&.content || '00')
+      amount = tooltip_data.at_css(".money#{coin_type}")&.content || '00'
+      amount = "0" + amount if amount.length == 1
+      total << amount
     }.to_i
   end
 
