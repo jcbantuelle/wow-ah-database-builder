@@ -7,12 +7,16 @@ def invalid_name?(item_name)
   item_name.start_with?('Monster - ')
 end
 
-def invalid_quality?(wowhead_item)
-  wowhead_item.quality == 'q0'
+def invalid_wowhead_item?(item)
+  invalid_quality?(item) || invalid_bind?(item)
 end
 
-def invalid_bind?(wowhead_item)
-  wowhead_item.bind_on_pickup
+def invalid_quality?(item)
+  item.quality == 'q0'
+end
+
+def invalid_bind?(item)
+  item.bind_on_pickup
 end
 
 items = CSV.read('wow-items-db.csv')
@@ -22,6 +26,6 @@ CSV.open('ah-items.csv', 'wb') do |csv|
     invalid_name?(item[1])
   }.each { |item|
     wowhead_item = WowheadItem.new(item)
-    csv << wowhead_item.to_a
+    csv << wowhead_item.to_a unless invalid_wowhead_item?(wowhead_item)
   }
 end
