@@ -27,7 +27,7 @@ class WowheadItem
   end
 
   def to_a
-    [@id, max_stack, sell_price, sell_price * 1.2]
+    [@id, max_stack, sell_price, (sell_price * 1.2).to_i]
   end
 
   def to_s
