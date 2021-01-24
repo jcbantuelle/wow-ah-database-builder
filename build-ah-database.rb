@@ -8,7 +8,7 @@ def invalid_name?(item_name)
 end
 
 def invalid_wowhead_item?(item)
-  invalid_quality?(item) || invalid_bind?(item)
+  invalid_quality?(item) || invalid_bind?(item) || conjured?(item)
 end
 
 def invalid_quality?(item)
