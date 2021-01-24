@@ -11,6 +11,7 @@ class WowheadItem
     @bind_on_pickup = raw_tooltip.include?('Binds when picked up')
     @quest_item = raw_tooltip.include?('Quest Item')
     @conjured = raw_tooltip.include?('Conjured Item')
+    @horde_only = wowhead_page.include?('[span class=icon-horde]Horde[\/span]')
   end
 
   def max_stack
