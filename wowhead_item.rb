@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class WowheadItem
-  attr_reader :id, :name, :page, :quality, :bind_on_pickup, :conjured
+  attr_reader :id, :name, :quality, :bind_on_pickup, :conjured, :quest_item, :horde_only
 
   def initialize(item)
     @id = item[0]
