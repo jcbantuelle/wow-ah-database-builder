@@ -4,7 +4,7 @@ require_relative 'wowhead_item'
 require 'csv'
 
 def invalid_name?(item_name)
-  item_name.start_with?('Monster - ')
+  item_name.start_with?('Monster - ', 'Conjured')
 end
 
 def invalid_wowhead_item?(item)
@@ -17,6 +17,10 @@ end
 
 def invalid_bind?(item)
   item.bind_on_pickup
+end
+
+def conjured?(item)
+  item.conjured
 end
 
 items = CSV.read('wow-items-db.csv')
