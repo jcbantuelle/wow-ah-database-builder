@@ -2,6 +2,7 @@
 
 require_relative 'wowhead_item'
 require 'csv'
+require 'pp'
 
 def invalid_name?(item_name)
   item_name.start_with?('Monster - ', 'Conjured')
@@ -23,5 +24,6 @@ CSV.open('ah-items.csv', 'wb') do |csv|
   }.each { |item|
     wowhead_item = WowheadItem.new(item)
     csv << wowhead_item.to_a unless invalid_wowhead_item?(wowhead_item)
+    pp "Processed Item ##{item[0]}"
   }
 end
