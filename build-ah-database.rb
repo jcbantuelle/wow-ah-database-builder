@@ -11,6 +11,10 @@ def invalid_quality?(wowhead_item)
   wowhead_item.quality == 'q0'
 end
 
+def invalid_bind?(wowhead_item)
+  wowhead_item.bind_on_pickup
+end
+
 items = CSV.read('wow-items-db.csv')
 
 CSV.open('ah-items.csv', 'wb') do |csv|

@@ -2,13 +2,14 @@ require 'open-uri'
 require 'nokogiri'
 
 class WowheadItem
-  attr_reader :id, :name, :page, :quality
+  attr_reader :id, :name, :page, :quality, :bind_on_pickup
 
   def initialize(item)
     @id = item[0]
     @name = item[1]
     @page = fetch_wowhead_page
     @quality = tooltip_data.at_css('table td b').attribute('class')
+    @bind_on_pickup = raw_tooltip.include?('Binds when picked up')
   end
 
   def max_stack
