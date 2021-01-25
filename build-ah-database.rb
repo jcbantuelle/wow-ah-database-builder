@@ -18,7 +18,7 @@ end
 
 items = CSV.read('wow-items-db.csv')
 
-CSV.open('ah-items.csv', 'wb') do |csv|
+CSV.open('ah-items.csv', 'ab') do |csv|
   items.reject { |item|
     invalid_name?(item[1])
   }.each { |item|
